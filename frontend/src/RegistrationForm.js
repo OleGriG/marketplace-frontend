@@ -1,5 +1,6 @@
 // RegistrationForm.js
 import React, { useState } from 'react';
+import { baseDevelopUrl } from './constants'; 
 
 const RegistrationForm = () => {
     const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const RegistrationForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch('http://localhost:8030/users/registration/', {
+        const response = await fetch(`${baseDevelopUrl}/users/registration/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,0 +1,1 @@
+export const baseDevelopUrl = 'http://localhost:8030';

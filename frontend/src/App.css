@@ -73,3 +73,53 @@ button:hover {
   background-color: #0056b3;
 }
 
+.home-page {
+  text-align: center;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-toggle {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.category-toggle:hover {
+  background-color: #0056b3;
+}
+
+.category-list {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.category-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.category-list li {
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.category-list li:hover {
+  text-decoration: underline;
+}
+
+

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { baseDevelopUrl } from './constants';
+
 
 const LoginForm = () => {
     const [login, setLogin] = useState('');
@@ -7,7 +9,7 @@ const LoginForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch('http://localhost:8030/users/login/', {
+        const response = await fetch(`${baseDevelopUrl}/users/login/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
