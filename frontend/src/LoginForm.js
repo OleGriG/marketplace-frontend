@@ -30,8 +30,8 @@ const LoginForm = () => {
         <div>
             <form onSubmit={handleSubmit} className="form">
                 <input type="text" placeholder="Email" value={login} onChange={(e) => setLogin(e.target.value)} />
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">Login</button>
+                <input type="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <button type="submit">Подтвердить</button>
             </form>
             {error && <p>{error}</p>}
         </div>

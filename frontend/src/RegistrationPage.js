@@ -5,7 +5,7 @@ import './App.css';
 const RegistrationPage = () => {
     return (
         <div className="container">
-            <h1>Registration Page</h1>
+            <h1>Регистрация</h1>
             <RegistrationForm />
         </div>
     );

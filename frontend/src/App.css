@@ -10,8 +10,8 @@ body {
 
 
 .main-content {
-  margin-top: 60px; /* Adjust according to header height */
-  margin-bottom: 40px; /* Adjust according to footer height */
+  margin-top: 60px;
+  margin-bottom: 40px;
   padding: 20px;
 }
 
@@ -89,20 +89,84 @@ button:hover {
   flex-wrap: wrap;
 }
 
-.product-item {
-  width: 25%; 
-  padding: 10px;
-}
-
 .product-image img {
   width: 100%; 
   height: auto;
+  border-radius: 5px;
 }
 
-.product-name {
-  text-align: center;
+.product-item {
+  width: 25%;
+  padding: 10px;
+  transition: all 0.3s ease;
+  box-sizing: border-box; 
+  position: relative; 
 }
 
+.product-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
+}
 
+.product-info {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 5px; /* Добавляем скругление углов */
+}
+
+.product-item:hover .product-info {
+  display: block;
+}
+
+.product-info img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.product-info p {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.currency {
+  font-size: 14px;
+  color: #666;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.add-to-cart-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: 350px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-image: url('./icons/cartIcon.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+}
 
 

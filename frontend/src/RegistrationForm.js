@@ -33,10 +33,10 @@ const RegistrationForm = () => {
         <div>
             <form onSubmit={handleSubmit} className="form">
                 <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <input type="text" placeholder="First Name" value={first_name} onChange={(e) => setFirstName(e.target.value)} />
-                <input type="text" placeholder="Last Name" value={last_name} onChange={(e) => setLastName(e.target.value)} />
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">Register</button>
+                <input type="text" placeholder="Имя" value={first_name} onChange={(e) => setFirstName(e.target.value)} />
+                <input type="text" placeholder="Фамилия" value={last_name} onChange={(e) => setLastName(e.target.value)} />
+                <input type="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <button type="submit">Подтвердить</button>
             </form>
             {error && <p>{error}</p>}
         </div>
