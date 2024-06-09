@@ -1,6 +1,6 @@
 import React from 'react';
 import RegistrationForm from './RegistrationForm';
-import './App.css';
+import '../App.css';
 
 const RegistrationPage = () => {
     return (

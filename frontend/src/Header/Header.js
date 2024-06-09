@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import profileIcon from './icons/profileIcon.png'; 
-import cartIcon from './icons/cartIcon.png';
-import categoryIcon from './icons/category.png';
-import closeIcon from './icons/close.png';
+import profileIcon from '../icons/profileIcon.png'; 
+import cartIcon from '../icons/cartIcon.png';
+import categoryIcon from '../icons/category.png';
+import closeIcon from '../icons/close.png';
+import './Header.css'
 
 const Header = ({ categories }) => {
   const [showCategories, setShowCategories] = useState(false);

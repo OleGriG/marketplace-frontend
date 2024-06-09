@@ -1,4 +1,6 @@
 /* App.css */
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 body {
   margin: 0;
@@ -89,23 +91,38 @@ button:hover {
   flex-wrap: wrap;
 }
 
+.product-name {
+  position: absolute;
+  bottom: 60px;
+  font-size: 20px;
+}
+
+.product-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
 .product-image img {
   width: 100%; 
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   border-radius: 5px;
 }
 
 .product-item {
-  width: 25%;
+  width: 16%;
   padding: 10px;
   transition: all 0.3s ease;
   box-sizing: border-box; 
-  position: relative; 
+  position: relative;
+  margin-right: 1%;
+  height: 400px;
 }
 
 .product-item:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  transform: translateY(-5px);
+  /* transform: translateY(-5px); */
 }
 
 .product-info {
@@ -116,11 +133,7 @@ button:hover {
   width: 100%;
   background-color: rgba(255, 255, 255, 0.9);
   padding: 10px;
-  border-radius: 5px; /* Добавляем скругление углов */
-}
-
-.product-item:hover .product-info {
-  display: block;
+  border-radius: 5px;
 }
 
 .product-info img {
@@ -136,15 +149,25 @@ button:hover {
 .price-container {
   display: flex;
   align-items: center;
+  position: absolute;
+  bottom: 40px;
 }
 
-.price {
+.price .company-name{
   font-weight: bold;
   margin-right: 5px;
 }
 
+.company-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+}
+
 .currency {
   font-size: 14px;
+  font-weight: bold;
   color: #666;
 }
 
@@ -156,17 +179,38 @@ button:hover {
 .add-to-cart-button {
   background-color: transparent;
   border: none;
-  padding: 0;
-  width: 350px;
+  width: 70%;
   height: 30px;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
   display: flex;
-  align-items: center;
+  padding-left: 50;
   justify-content: center;
   border-radius: 5px;
   background-image: url('./icons/cartIcon.png');
+  background-color: #3e73ac;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
+  position: absolute;
+  bottom: 5px;
 }
+
+.slider-wrapper {
+  padding-top: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  max-height: 300px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.slider-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
 
 

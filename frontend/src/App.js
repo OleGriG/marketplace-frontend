@@ -1,8 +1,8 @@
 // App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RegistrationPage from './RegistrationPage';
-import LoginPage from './LoginPage';
+import RegistrationPage from './Registration/RegistrationPage';
+import LoginPage from './Login/LoginPage';
 import HomePage from './HomePage';
 
 const App = () => {

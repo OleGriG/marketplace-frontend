@@ -1,6 +1,6 @@
 // RegistrationForm.js
 import React, { useState } from 'react';
-import { baseDevelopUrl } from './constants'; 
+import { baseDevelopUrl } from '../constants'; 
 
 const RegistrationForm = () => {
     const [email, setEmail] = useState('');
