@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { baseDevelopUrl } from '../constants';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import profileIcon from '../icons/profileIcon.png'; 
 import cartIcon from '../icons/cartIcon.png';
 import categoryIcon from '../icons/category.png';
@@ -7,6 +10,7 @@ import './Header.css'
 
 const Header = ({ categories }) => {
   const [showCategories, setShowCategories] = useState(false);
+  const navigate = useNavigate();
 
   const toggleCategories = () => {
     setShowCategories(!showCategories);
@@ -20,8 +24,20 @@ const Header = ({ categories }) => {
     console.log('Clicked on profile icon');
   };
 
-  const handleCartClick = () => {
-    console.log('Clicked on cart icon');
+  const handleCartClick = async () => {
+    const accessToken = localStorage.getItem('accessToken');
+    try {
+      const response = await axios.get(`${baseDevelopUrl}/marketplace/carts/get-cart/`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      if (response.status === 200) {
+        navigate('/cart');
+      }
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    }
   };
 
   return (

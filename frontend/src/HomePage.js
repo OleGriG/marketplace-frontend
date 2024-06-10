@@ -7,6 +7,8 @@ import { baseDevelopUrl } from './constants';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import './App.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import cartIcon from './icons/cartIcon.png';
 
 
@@ -64,8 +66,34 @@ const HomePage = () => {
     setShowCategories(!showCategories);
   };
 
-  const handleAddToCart = (productId) => {
-    console.log(`Product with ID ${productId} added to cart.`);
+  const handleAddToCart = async (productId) => {
+    const accessToken = localStorage.getItem('accessToken');
+    
+    if (!accessToken) {
+        console.error('No access token found');
+        return;
+    };
+
+    try {
+      const response = await fetch(`${baseDevelopUrl}/marketplace/carts/add-to-cart/`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({ product_id: productId }),
+      });
+
+      if (response.ok) {
+          const data = await response.json();
+          toast.success('Товар успешно добавлен в корзину!');
+      } else {
+          const errorData = await response.json();
+          toast.success('Произошла ошибка при попытке добавить товар в корзину');
+      }
+  } catch (error) {
+      console.error('Error adding product to cart:', error);
+  }
   };
 
   return (
@@ -110,6 +138,7 @@ const HomePage = () => {
           ))}
         </div>
       </div>
+      <ToastContainer />
       <Footer />
     </div>
   );

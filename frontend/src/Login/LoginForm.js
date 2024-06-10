@@ -16,10 +16,9 @@ const LoginForm = () => {
             },
             body: JSON.stringify({ login, password }),
         });
-        
         if (response.ok) {
             const data = await response.json();
-            sessionStorage.setItem('accessToken', data.access);
+            localStorage.setItem('accessToken', data.access);
             window.location.href = '/';
         } else {
             setError('Ошибка авторизации. Проверьте логин и пароль.');
