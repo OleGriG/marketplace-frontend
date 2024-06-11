@@ -1,0 +1,15 @@
+version: '1'
+
+volumes:
+  pg_data:
+  static:
+  media:
+
+services:
+  frontend:
+    container_name: marketplace_frontend
+    image: grigoleg/marketplace_frontend
+    env_file: .env
+    command: cp -r build/. ../static/
+    volumes:
+      - static:/static
