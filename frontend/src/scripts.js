@@ -60,7 +60,7 @@
 // };
 
 function BackendImage({ src, alt, ...props }) {
-    const backendBaseUrl = 'http://localhost:8020';
+    const backendBaseUrl = 'https://bububu.zapto.org';
     const imageUrl = `${backendBaseUrl}${src}`;
     return <img src={imageUrl} alt={alt} {...props} />;
   }

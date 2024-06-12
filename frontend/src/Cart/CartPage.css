@@ -1,5 +1,7 @@
 /* CartPage.css */
-
+.nn {
+    min-height: 100%;
+}
 .cart-page {
     padding: 20px;
     width: 60%;
@@ -40,12 +42,15 @@
   }
 
   .cart-container {
-    display: flex;
+    display: grid;
+    margin-bottom: 80px;
+    min-height: 100%;
+    grid-template-rows: auto 1fr auto;
   }
   
   .cart-page {
     flex: 1;
-    width: 60%; /* Устанавливаем ширину в 60% от родительского контейнера */
+    width: 60%;
     max-width: 60%;
     padding: 20px;
   }

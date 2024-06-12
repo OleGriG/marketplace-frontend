@@ -57,6 +57,10 @@ const CartPage = () => {
     }
   };
 
+  const handleClearSelectedProducts = () => {
+    setSelectedProducts([]);
+  };
+
   const getTotalPrice = (bb) => {
     return bb.reduce((total, product) => {
       if (selectedProducts.includes(product.id)) {
@@ -70,13 +74,38 @@ const CartPage = () => {
     setShowCategories(!showCategories);
   };
 
+  const handleRemoveProducts = async (productIds) => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      await axios.post(`${baseDevelopUrl}/marketplace/carts/remove-products/`, {
+        products_ids: productIds
+      }, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      const updatedCart = await axios.get(`${baseDevelopUrl}/marketplace/carts/get-cart/`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      setCart(updatedCart.data);
+      setSelectedProducts([]);
+    } catch (error) {
+      console.error('Error removing products:', error);
+    }
+  };
+
   return (
-    <div>
+    <div className='nn'>
     <Header toggleCategories={toggleCategories} showCategories={showCategories} categories={categories} />
     <div className="cart-container">
         <div className="cart-page">
         <h1>Корзина</h1>
-        <button onClick={() => handleSelectAll(cart)}>Выбрать все</button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+            <button onClick={() => handleSelectAll(cart)}>Выбрать все</button>
+            <button onClick={handleClearSelectedProducts}>Очистить выбор</button>
+        </div>
         {cart.products.map((product) => (
             <div key={product.id} className="cart-item">
             <input
@@ -90,6 +119,7 @@ const CartPage = () => {
                 <h2>{product.name}</h2>
                 <p>Price: {product.price} ₽</p>
                 <p>Company: {product.owner.company_name}</p>
+                <button onClick={() => handleRemoveProducts([product.id])}>Удалить товар</button>
             </div>
             </div>
         ))}
@@ -98,7 +128,10 @@ const CartPage = () => {
           <p>Общая сумма: {getTotalPrice(cart.products)} ₽</p>
           <p>Пункт выдачи: Какой-то пункт</p>
           <p>Количество выбранных товаров: {selectedProducts.length}</p>
-          <button>Заказать</button>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button>Заказать</button>
+            <button onClick={() => handleRemoveProducts(selectedProducts)}>Убрать выбранные товары</button>
+          </div>
         </div>
     </div>
     <Footer />

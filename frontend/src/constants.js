@@ -1,1 +1,2 @@
-export const baseDevelopUrl = 'http://94.241.170.116:9000/admin/api';
+// export const baseDevelopUrl = 'https://bububu.zapto.org/api';
+export const baseDevelopUrl = 'http://localhost:8020/api';

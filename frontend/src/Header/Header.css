@@ -127,4 +127,12 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 998;
   }
+
+.selected-category-message {
+    padding: 10px;
+    background-color: #0d00ff;
+    text-align: left;
+    margin-top: 10px;
+    font-size: 1.2em;
+}
   

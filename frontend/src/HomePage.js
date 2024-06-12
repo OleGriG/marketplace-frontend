@@ -1,11 +1,13 @@
 // HomePage.js
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Slider from 'react-slick';
 import { baseDevelopUrl } from './constants';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import { useCategory } from './context'
 import './App.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,13 +19,23 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [slider, setSlider] = useState([]);
   const [showCategories, setShowCategories] = useState(false);
+  const { selectedCategory } = useCategory();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCategories();
-    fetchProducts();
     fetchSlider();
   }, 
   []);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      loadProductsByCategory(selectedCategory);
+    } else {
+      fetchProducts();
+    }
+  }, [selectedCategory]);
 
   const sliderSettings = {
     dots: true,
@@ -43,6 +55,15 @@ const HomePage = () => {
       console.error('Error fetching categories:', error);
     }
   };
+
+  const loadProductsByCategory = async (selectedCategory) => {
+    try {
+      const response = await axios.get(`${baseDevelopUrl}/marketplace/categories/${selectedCategory.id}/`);
+      setProducts(response.data['products']);
+    } catch (error) {
+      console.error('Error fetching products', error);
+    }
+  }
 
   const fetchProducts = async () => {
     try {
@@ -70,8 +91,7 @@ const HomePage = () => {
     const accessToken = localStorage.getItem('accessToken');
     
     if (!accessToken) {
-        console.error('No access token found');
-        return;
+        navigate('/login');
     };
 
     try {

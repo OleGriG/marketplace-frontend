@@ -1,31 +1,52 @@
 import React, { useState } from 'react';
+import { useCategory } from '../context';
 import { baseDevelopUrl } from '../constants';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import profileIcon from '../icons/profileIcon.png'; 
-import cartIcon from '../icons/cartIcon.png';
-import categoryIcon from '../icons/category.png';
+import profileIcon from '../icons/profileIcon2.svg'; 
+import cartIcon from '../icons/cartIcon2.svg';
+import categoryIcon from '../icons/category2.svg';
 import closeIcon from '../icons/close.png';
 import './Header.css'
 
 const Header = ({ categories }) => {
   const [showCategories, setShowCategories] = useState(false);
+  const [selectedCategoryMessage, setSelectedCategoryMessage] = useState('');
+  const { setSelectedCategory } = useCategory();
   const navigate = useNavigate();
 
   const toggleCategories = () => {
     setShowCategories(!showCategories);
   };
 
-  const handleCategoryClick = (category) => {
-    console.log(`Clicked on category: ${category.name}`);
+  const handleCategoryClick = async (category) => {
+    setSelectedCategory(category);
+    setShowCategories(false);
+    setSelectedCategoryMessage(`Товары из категории ${category.name}`);
+    navigate('/');
+  };
+
+  const handleResetCategory = (e) => {
+    setSelectedCategory(null);
+    setSelectedCategoryMessage(``);
   };
 
   const handleProfileClick = () => {
-    console.log('Clicked on profile icon');
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      navigate('/profile');
+    } else {
+      navigate('/login');
+    }
   };
 
   const handleCartClick = async () => {
     const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) {
+      navigate('/login');
+      return;
+    }
     try {
       const response = await axios.get(`${baseDevelopUrl}/marketplace/carts/get-cart/`, {
         headers: {
@@ -44,7 +65,7 @@ const Header = ({ categories }) => {
     <header className="header">
       <div className="container-header">
         <div className="logo">
-          <h1>GoodBerries</h1>
+          <h1><Link to="/" onClick={handleResetCategory}>GoodBerries</Link></h1>
         </div>
         <div className="nav">
           <button className={`category-toggle ${showCategories ? 'close' : ''}`} onClick={toggleCategories}>
@@ -68,6 +89,11 @@ const Header = ({ categories }) => {
           </button>
         </div>
       </div>
+      {selectedCategoryMessage && (
+        <div className="selected-category-message">
+          {selectedCategoryMessage}
+        </div>
+      )}
       {showCategories && (
         <div className="overlay" onClick={toggleCategories}></div>
       )}

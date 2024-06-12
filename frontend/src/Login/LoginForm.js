@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { baseDevelopUrl } from '../constants';
 
 
@@ -33,6 +34,9 @@ const LoginForm = () => {
                 <button type="submit">Подтвердить</button>
             </form>
             {error && <p>{error}</p>}
+            <Link to="/registration">
+                <button type="submit">Нет аккаунта?</button>
+            </Link>
         </div>
     );
 };
